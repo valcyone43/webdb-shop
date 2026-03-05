@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------- global variables & resets --------- */
+@layer base {
+  :root {
+    --primary-color: #b689b6;
+    --bg: #101010;
+    --nav-color: #fff;
+    --text-color: #fff;
+    --side-nav: #101010;
+    --search-text: #fff;
+    --nav-text: #f77124;
+  }
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+  }
+
+  body {
+    @apply font-outfit bg-[var(--bg)] text-white;
+  }
+}
+
+/* ---------- component-specific styles ---------- */
+@layer components {
+  /* navigation wrapper at top of page */
+  nav {
+    @apply fixed top-0 left-0 w-full h-[70px] bg-[rgba(1,1,1,0.8)] border-b border-gray-900 z-50;
+  }
+
+  .nav-bar {
+    @apply relative h-[70px] max-w-[1000px] w-full mx-auto flex px-8 items-center justify-between;
+  }
+
+  .logo a {
+    @apply text-2xl font-medium text-[var(--nav-text)];
+  }
+
+  .nav-menu {
+    @apply flex items-center;
+  }
+
+  .nav-menu li {
+    @apply list-none mx-1;
+  }
+
+  .nav-menu li a {
+    @apply relative text-[17px] font-medium text-[var(--nav-text)] px-2 py-2;
+  }
+
+  .nav-menu li a::before {
+    content: '';
+    @apply absolute left-1/2 bottom-0 transform -translate-x-1/2 h-1.5 w-1.5 bg-[var(--nav-text)] rounded-full opacity-0 transition-opacity;
+  }
+
+  .nav-menu li:hover a::before {
+    @apply opacity-100;
+  }
+
+  .nav-menu a:hover {
+    @apply text-white;
+  }
+
+  .search-box {
+    @apply mx-1 h-10 w-10 flex items-center justify-center relative;
+  }
+
+  .search-box a {
+    @apply text-2xl cursor-pointer text-[var(--nav-text)] flex items-center justify-center w-full h-full mx-[5px] ml-[20px];
+  }
+
+  .search-box a:hover {
+    @apply text-white;
+  }
+
+  /* hero section using background image */
+  .hero {
+    @apply min-h-screen flex items-center bg-center bg-no-repeat bg-cover;
+    background-image: url('../assets/header-bg.jpg');
+  }
+}
+
+/* ---------- utilities ---------- */
+@layer utilities {
+  @keyframes cardFadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .card-animate {
+    animation: cardFadeSlide 260ms ease;
+  }
+}
